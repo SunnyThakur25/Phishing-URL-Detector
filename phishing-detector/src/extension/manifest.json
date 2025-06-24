@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Phishing URL Detector",
+  "version": "1.0",
+  "description": "Detects phishing URLs using open-source blocklists, typosquatting, and homoglyph checks. Offers Browserling sandbox for uncertain URLs.",
+  "permissions": ["storage", "activeTab", "webRequest"],
+  "web_accessible_resources": [
+    {
+      "resources": ["legit_domains.txt", "suspicious_tlds.txt"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
